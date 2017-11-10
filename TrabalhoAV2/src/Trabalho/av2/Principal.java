@@ -58,9 +58,19 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.add(miUsuario);
 
         miEndereco.setText("Enderço");
+        miEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEnderecoActionPerformed(evt);
+            }
+        });
         jMenu4.add(miEndereco);
 
         miPerfil.setText("Perfil");
+        miPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miPerfilActionPerformed(evt);
+            }
+        });
         jMenu4.add(miPerfil);
 
         jMenuBar2.add(jMenu4);
@@ -107,6 +117,20 @@ public class Principal extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_miUsuarioActionPerformed
+
+    private void miEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEnderecoActionPerformed
+       CadastroEndereco endereco = new CadastroEndereco();
+       endereco.setLocationRelativeTo(this);
+       endereco.setVisible(true);
+       endereco.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }//GEN-LAST:event_miEnderecoActionPerformed
+
+    private void miPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miPerfilActionPerformed
+        CadastroPerfil perfil = new CadastroPerfil();
+        perfil.setLocationRelativeTo(this);
+        perfil.setVisible(true);
+        perfil.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }//GEN-LAST:event_miPerfilActionPerformed
 
     /**
      * @param args the command line arguments
