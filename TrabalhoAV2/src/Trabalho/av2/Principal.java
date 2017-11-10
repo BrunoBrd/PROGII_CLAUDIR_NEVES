@@ -5,6 +5,8 @@
  */
 package Trabalho.av2;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author aluno
@@ -16,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,9 +32,9 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        miUsuario = new javax.swing.JMenuItem();
+        miEndereco = new javax.swing.JMenuItem();
+        miPerfil = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -40,15 +43,25 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu4.setText("Cadastro");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
 
-        jMenuItem2.setText("Usuário");
-        jMenu4.add(jMenuItem2);
+        miUsuario.setText("Usuário");
+        miUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu4.add(miUsuario);
 
-        jMenuItem1.setText("Enderço");
-        jMenu4.add(jMenuItem1);
+        miEndereco.setText("Enderço");
+        jMenu4.add(miEndereco);
 
-        jMenuItem3.setText("Perfil");
-        jMenu4.add(jMenuItem3);
+        miPerfil.setText("Perfil");
+        jMenu4.add(miPerfil);
 
         jMenuBar2.add(jMenu4);
 
@@ -80,6 +93,20 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void miUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miUsuarioActionPerformed
+
+       CadastroUsuario usuario = new CadastroUsuario();
+       usuario.setLocationRelativeTo(this);
+       usuario.setVisible(true);
+       usuario.setDefaultCloseOperation( JFrame.HIDE_ON_CLOSE );
+       
+        
+    }//GEN-LAST:event_miUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,11 +147,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem miEndereco;
+    private javax.swing.JMenuItem miPerfil;
+    private javax.swing.JMenuItem miUsuario;
     // End of variables declaration//GEN-END:variables
 }
