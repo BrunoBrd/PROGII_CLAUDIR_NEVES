@@ -16,9 +16,11 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+      
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -78,12 +80,27 @@ public class Principal extends javax.swing.JFrame {
         jMenu5.setText("Lista");
 
         jMenuItem4.setText("Usuário");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem4);
 
         jMenuItem5.setText("Endereço");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem5);
 
         jMenuItem6.setText("Perfil");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem6);
 
         jMenuBar2.add(jMenu5);
@@ -131,6 +148,27 @@ public class Principal extends javax.swing.JFrame {
         perfil.setVisible(true);
         perfil.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }//GEN-LAST:event_miPerfilActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        ListaUsuario usuario = new ListaUsuario();
+        usuario.setLocationRelativeTo(this);
+        usuario.setVisible(true);
+        usuario.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        ListaEndereco endereco = new ListaEndereco();
+        endereco.setLocationRelativeTo(this);
+        endereco.setVisible(true);
+        endereco.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        ListaPerfil perfil = new ListaPerfil();
+        perfil.setLocationRelativeTo(this);
+        perfil.setVisible(true);
+        perfil.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
