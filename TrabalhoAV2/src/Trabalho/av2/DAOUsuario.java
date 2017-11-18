@@ -79,7 +79,7 @@ public class DAOUsuario {
     }
     public void deletarUsuario(Usuario usuario){
         String sql = "delete from tb_usuario"
-                + "where nome=?";
+                + "where id_usuario=?";
         try {
             PreparedStatement exclusao = conexao.prepareStatement(sql);
             exclusao.setString(1, usuario.getNome());

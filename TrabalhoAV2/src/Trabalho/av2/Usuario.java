@@ -83,6 +83,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return nome + " " +sobrenome;
+        return id_usuario + " " +nome + " " +sobrenome;
     }
 }

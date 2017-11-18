@@ -8,6 +8,7 @@ package Trabalho.av2;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 
 
 /**
@@ -21,8 +22,10 @@ public class ListaUsuario extends javax.swing.JFrame {
      */
     public ListaUsuario() {
         initComponents();
+       /* ltNome.setLayoutOrientation(JList.VERTICAL_WRAP);
+        ltNome.setVisibleRowCount(2);*/
+        setTitle("Lista de Usuários");
         
-        btnPuxar.setVisible(false);
     }
 
     /**
@@ -41,6 +44,10 @@ public class ListaUsuario extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         btnPuxar = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ltId = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        ltSobrenome = new javax.swing.JList<>();
 
         setName("fListarUsuario"); // NOI18N
 
@@ -56,6 +63,11 @@ public class ListaUsuario extends javax.swing.JFrame {
         });
 
         btnExcluir.setText("Exclir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnListar.setText("Listar");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +83,10 @@ public class ListaUsuario extends javax.swing.JFrame {
             }
         });
 
+        jScrollPane3.setViewportView(ltId);
+
+        jScrollPane4.setViewportView(ltSobrenome);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,32 +94,41 @@ public class ListaUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnListar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnPuxar))
-                    .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnExcluir)
                     .addComponent(btnListar)
                     .addComponent(btnPuxar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -117,21 +142,34 @@ public class ListaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        CadastroUsuario  usuarios = new CadastroUsuario();
         DAOUsuario dao = new DAOUsuario();
         List<Usuario> lista;
-        DefaultListModel model = new DefaultListModel();
+        DefaultListModel nome = new DefaultListModel();
+        DefaultListModel id = new DefaultListModel();
+        DefaultListModel sobrenome = new DefaultListModel();
         lista = dao.listarUsuario();
         for (Usuario usuario : lista) {
-            model.addElement(usuario);
-            ltNome.setModel(model);
-            
-           
+            nome.addElement(usuario.getNome());
+            id.addElement(usuario.getId_usuario());
+            sobrenome.addElement(usuario.getSobrenome());
+            ltNome.setModel(nome);  
+            ltId.setModel(id);
+            ltSobrenome.setModel(sobrenome);
         }
+        
     }//GEN-LAST:event_btnListarActionPerformed
 
     private void btnPuxarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPuxarActionPerformed
-        // TODO add your handling code here:
+                
     }//GEN-LAST:event_btnPuxarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        DAOUsuario dao = new DAOUsuario();
+        CadastroUsuario usuario = new CadastroUsuario();
+        
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,7 +213,11 @@ public class ListaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnPuxar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JList<String> ltId;
     private javax.swing.JList<String> ltNome;
+    private javax.swing.JList<String> ltSobrenome;
     // End of variables declaration//GEN-END:variables
 
 }
