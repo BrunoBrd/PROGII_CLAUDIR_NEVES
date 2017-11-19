@@ -5,8 +5,7 @@
  */
 package Trabalho.av2;
 
-import java.util.List;
-import javax.swing.DefaultListModel;
+
 import javax.swing.JFrame;
 
 /**
@@ -283,7 +282,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
         txtNumero.setEnabled(true);
         txtNome.grabFocus();
         cbPerfil.setEnabled(true);
-        boolean inserir=true;
+        
         
     }//GEN-LAST:event_btnInserirActionPerformed
 

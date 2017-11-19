@@ -23,19 +23,19 @@ public class DAOUsuario {
 
     Connection conexao = Conexao.criarConexao();
 
-    public int salvarUsuario(Usuario usuario) {
+    public void salvarUsuario(Usuario usuario) {
         String sql = "insert into tb_usuario"
                 + "(nome, sobrenome)"
                 + "values(?,?)";
         try {
-            PreparedStatement preparacaoDaInstrucao = conexao.prepareStatement(sql);
-            preparacaoDaInstrucao.setString(1, usuario.getNome());
-            preparacaoDaInstrucao.setString(2, usuario.getSobrenome());
+            PreparedStatement inserir = conexao.prepareStatement(sql);
+            inserir.setString(1, usuario.getNome());
+            inserir.setString(2, usuario.getSobrenome());
+            inserir.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro relizado com sucesso!");
-            return preparacaoDaInstrucao.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return -1;
+           
         }
 
     }
@@ -56,37 +56,40 @@ public class DAOUsuario {
                 listaParaRetorno.add(usuario);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             return null;
         }
         return listaParaRetorno;
     }
 
-    public int alterarUsuario(Usuario usuario) {
-        String sql = "update tb_usuario"
-                + "set nome=?,sobrenome=?";
+    public void alterarUsuario(Usuario usuario) {
+        String sql = "update tb_usuario "
+                + "set nome=?,sobrenome=? "
+                + "where id_usario=?";
         try {
             PreparedStatement alteracao = conexao.prepareStatement(sql);
             alteracao.setString(1, usuario.getNome());
             alteracao.setString(2, usuario.getSobrenome());
+            alteracao.setInt(3, usuario.getId_usuario());
+            alteracao.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro alterado com sucesso");
-            return alteracao.executeUpdate();
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return -1;
+            
         }
 
     }
-    public void deletarUsuario(Usuario usuario){
-        String sql = "delete from tb_usuario"
+    public void deletarUsuario(int id_usuario){
+        String sql = "delete from tb_usuario "
                 + "where id_usuario=?";
         try {
             PreparedStatement exclusao = conexao.prepareStatement(sql);
-            exclusao.setString(1, usuario.getNome());
+            exclusao.setInt(1, id_usuario);
             exclusao.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro excluido com sucesso");
         } catch (SQLException ex) {
-            Logger.getLogger(DAOUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         
     }

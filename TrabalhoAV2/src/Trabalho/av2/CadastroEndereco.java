@@ -5,7 +5,9 @@
  */
 package Trabalho.av2;
 
+import java.util.List;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,11 +15,13 @@ import javax.swing.JFormattedTextField;
  */
 public class CadastroEndereco extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CadastroEndereco
-     */
+    public String opcao = "";
+
     public CadastroEndereco() {
         initComponents();
+        setTitle("Cadastro de Endereço");
+        setResizable(false);
+        txtid.setVisible(false);
     }
 
     /**
@@ -38,12 +42,13 @@ public class CadastroEndereco extends javax.swing.JFrame {
         txtBairro = new javax.swing.JTextField();
         txtComplemento = new javax.swing.JTextField();
         txtNumero = new javax.swing.JTextField();
-        ftxCep = new javax.swing.JFormattedTextField();
         btnInserir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        btnSelecionar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+        btnGravar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        txtid = new javax.swing.JTextField();
+        txtCep = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,66 +62,100 @@ public class CadastroEndereco extends javax.swing.JFrame {
 
         jLabel5.setText("CEP");
 
-        ftxCep.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                ftxCepKeyTyped(evt);
+        txtLogradouro.setEnabled(false);
+
+        txtBairro.setEnabled(false);
+
+        txtComplemento.setEnabled(false);
+
+        txtNumero.setEnabled(false);
+
+        btnInserir.setText("Inserir");
+        btnInserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInserirActionPerformed(evt);
             }
         });
 
-        btnInserir.setText("Inserir");
-
         btnAlterar.setText("Alterar");
+        btnAlterar.setEnabled(false);
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
-        btnSelecionar.setText("Selecionar");
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
-        btnCancelar.setText("Cancelar");
+        btnGravar.setText("Gravar");
+        btnGravar.setEnabled(false);
+        btnGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGravarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.setEnabled(false);
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
+        txtCep.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 51, Short.MAX_VALUE)
+                        .addComponent(btnInserir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGravar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnExcluir))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addGap(8, 8, 8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtComplemento)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(txtNumero)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ftxCep, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtComplemento)
-                            .addComponent(txtBairro))))
-                .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnInserir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSelecionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExcluir)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBairro)
+                            .addComponent(txtLogradouro)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(5, 5, 5)
+                .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,26 +172,128 @@ public class CadastroEndereco extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
                     .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ftxCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInserir)
                     .addComponent(btnAlterar)
-                    .addComponent(btnSelecionar)
-                    .addComponent(btnCancelar)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnGravar)
                     .addComponent(btnExcluir))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ftxCepKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftxCepKeyTyped
-    JFormattedTextField cep = new JFormattedTextField();
-    
-    
-    
-    }//GEN-LAST:event_ftxCepKeyTyped
+    private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+        txtComplemento.setEnabled(true);
+        txtLogradouro.setEnabled(true);
+        txtCep.setEnabled(true);
+        txtBairro.setEnabled(true);
+        txtNumero.setEnabled(true);
+        btnGravar.setEnabled(true);
+        txtLogradouro.grabFocus();
+        txtBairro.setText("");
+        txtComplemento.setText("");
+        txtLogradouro.setText("");
+        txtNumero.setText("");
+        txtCep.setText("");
+        opcao = "Inserir";
+    }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        btnGravar.setEnabled(true);
+        txtComplemento.setEnabled(true);
+        txtLogradouro.setEnabled(true);
+        txtCep.setEnabled(true);
+        txtBairro.setEnabled(true);
+        txtNumero.setEnabled(true);
+        opcao = "Alterar";
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        btnGravar.setEnabled(true);
+        txtBairro.setText("");
+        txtComplemento.setText("");
+        txtLogradouro.setText("");
+        txtNumero.setText("");
+        txtCep.setText("");
+        txtCep.setEnabled(false);
+        txtBairro.setEnabled(false);
+        txtComplemento.setEnabled(false);
+        txtLogradouro.setEnabled(false);
+        txtNumero.setEnabled(false);
+
+        btnAlterar.setEnabled(false);
+        opcao = "Excluir";
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        DAOEndereco dao = new DAOEndereco();
+        List<Endereco> lista;
+        lista = dao.listarEndereco();
+        for (Endereco endereco : lista) {
+            txtBairro.setText(endereco.getBairro());
+            txtLogradouro.setText(endereco.getLogradouro());
+            txtCep.setText(endereco.getCep());
+            txtNumero.setText(endereco.getNumero());
+            txtComplemento.setText(endereco.getComplemento());
+            txtid.setText(String.valueOf(endereco.getId_endereco()));
+        }
+        btnAlterar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        txtCep.setEnabled(false);
+        txtBairro.setEnabled(false);
+        txtComplemento.setEnabled(false);
+        txtLogradouro.setEnabled(false);
+        txtNumero.setEnabled(false);
+        btnGravar.setEnabled(false);
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
+        Endereco endereco = new Endereco();
+        DAOEndereco dao = new DAOEndereco();
+        endereco.setLogradouro(txtLogradouro.getText());
+        endereco.setComplemento(txtComplemento.getText());
+        endereco.setBairro(txtBairro.getText());
+        endereco.setNumero(txtNumero.getText());
+        endereco.setCep(txtCep.getText());
+        
+        switch (opcao) {
+            case "Inserir":
+                int id = endereco.getId_endereco()+1;
+                txtid.setText(String.valueOf(id));
+                dao.inserirEndereco(endereco);
+                break;
+            case "Alterar":
+                endereco.setId_endereco(Integer.parseInt(txtid.getText()));
+                dao.alterarEndereco(endereco);
+                break;
+            case "Excluir":
+                endereco.setId_endereco(Integer.parseInt(txtid.getText()));
+                int resposta = JOptionPane.showConfirmDialog(null, 
+                        "Confima Exclusão?", "Excluir Endereço",
+                         JOptionPane.YES_NO_OPTION);
+                if (resposta == 0) {
+                    dao.deletarEndereco(endereco.getId_endereco());
+                }
+                break;
+        }
+        btnInserir.setEnabled(true);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        txtBairro.setText("");
+        txtComplemento.setText("");
+        txtLogradouro.setText("");
+        txtNumero.setText("");
+        txtCep.setText("");
+        txtCep.setEnabled(false);
+        txtBairro.setEnabled(false);
+        txtComplemento.setEnabled(false);
+        txtLogradouro.setEnabled(false);
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_btnGravarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,19 +332,20 @@ public class CadastroEndereco extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnInserir;
-    private javax.swing.JButton btnSelecionar;
-    private javax.swing.JFormattedTextField ftxCep;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtBairro;
+    private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JTextField txtLogradouro;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtid;
     // End of variables declaration//GEN-END:variables
 }
