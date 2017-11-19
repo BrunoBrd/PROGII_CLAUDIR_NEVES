@@ -73,13 +73,13 @@ public class DAOPerfil {
             ex.printStackTrace();
         }
     }
-    public void deletarPerfil(int id_perfil){
+    public void deletarPerfil(Perfil perfil){
         String sql = "delete from tb_perfil "
                 + "where id_perfil=?";
         
         try {
             PreparedStatement deleta = conexao.prepareStatement(sql);
-            deleta.setInt(1, id_perfil);
+            deleta.setInt(1, perfil.getId_perfil());
             deleta.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro excluido com sucesso");
         } catch (SQLException ex) {

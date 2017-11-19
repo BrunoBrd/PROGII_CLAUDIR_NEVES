@@ -80,13 +80,13 @@ public class DAOEndereco {
             ex.printStackTrace();
         }
     }
-    public void deletarEndereco(int id_endereco){
+    public void deletarEndereco(Endereco endereco){
         String sql = "delete from tb_endereco "
                 + "where id_endereco=?";
         
         try {
             PreparedStatement deleta = conexao.prepareStatement(sql);
-            deleta.setInt(1, id_endereco);
+            deleta.setInt(1, endereco.getId_endereco());
             deleta.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cadastro excluido com sucesso");
         } catch (SQLException ex) {

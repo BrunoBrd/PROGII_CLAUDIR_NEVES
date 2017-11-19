@@ -142,24 +142,26 @@ public class CadastroPerfil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGravarActionPerformed
-                Perfil perfil = new Perfil();
-                DAOPerfil dao = new DAOPerfil();
-                perfil.setNome(txtNome.getText());
-                perfil.setDescricao(txtDescricao.getText());
-                perfil.setId_perfil(Integer.parseInt(txtid.getText()));
+        Perfil perfil = new Perfil();
+        DAOPerfil dao = new DAOPerfil();
+        perfil.setNome(txtNome.getText());
+        perfil.setDescricao(txtDescricao.getText());
+
         switch (opcao) {
             case "Inserir":
                 dao.inserirPerfil(perfil);
                 break;
             case "Alterar":
+                perfil.setId_perfil(Integer.parseInt(txtid.getText()));
                 dao.alterarPerfil(perfil);
                 break;
             case "Excluir":
-             int resposta = JOptionPane.showConfirmDialog(null, "Confima Exclusão?", "Excluir Perfil"
-                        ,JOptionPane.YES_NO_OPTION);
-             if(resposta==0){
-                dao.deletarPerfil(perfil.getId_perfil());
-             }
+                perfil.setId_perfil(Integer.parseInt(txtid.getText()));
+                int resposta = JOptionPane.showConfirmDialog(null, "Confima Exclusão?", "Excluir Perfil",
+                         JOptionPane.YES_NO_OPTION);
+                if (resposta == 0) {
+                    dao.deletarPerfil(perfil);
+                }
                 break;
         }
         btnInserir.setEnabled(true);
@@ -167,7 +169,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
         txtNome.setText("");
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
-        
+
     }//GEN-LAST:event_btnGravarActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
@@ -185,7 +187,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
         DAOPerfil dao = new DAOPerfil();
         List<Perfil> lista;
         lista = dao.listarPerfil();
-        for (Perfil perfil : lista){
+        for (Perfil perfil : lista) {
             txtDescricao.setText(perfil.getDescricao());
             txtNome.setText(perfil.getNome());
             txtid.setText(String.valueOf(perfil.getId_perfil()));
@@ -195,9 +197,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
         txtDescricao.setEnabled(false);
         txtNome.setEnabled(false);
         btnGravar.setEnabled(false);
-         
-        
-            
+
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -207,7 +207,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
         txtDescricao.setEnabled(true);
         txtNome.setEnabled(true);
         opcao = "Alterar";
-        
+
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -217,6 +217,7 @@ public class CadastroPerfil extends javax.swing.JFrame {
         txtNome.setEnabled(true);
         txtDescricao.setEnabled(true);
         btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
         opcao = "Excluir";
     }//GEN-LAST:event_btnExcluirActionPerformed
 
